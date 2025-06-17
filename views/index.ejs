@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogIt</title>
+    <link rel="icon" href="https://fav.farm/📚" />
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1 class="logo">BlogIt</h1>
+        <a href="/posts/new" class="nav-btn">➕ Create Blog</a>
+    </header>
+
+    <% for(post of posts){ %>
+        <div class="post">
+            <h3 class="user">@ <%= post.username %></h3>
+            <h4 class="content"><%= post.content.length > 100 ? post.content.slice(0, 100) + "..." : post.content %></h4>
+            <a href="/posts/<%= post.id %>">See in detail</a> &nbsp;&nbsp;
+            <a href="/posts/<%= post.id %>/edit">Edit</a><br><br>
+            <form method="post" action="/posts/<%= post.id %>?_method=DELETE">
+                <button>Delete Post</button>
+            </form>
+        </div>
+    <% } %>
+</body>
+</html>
